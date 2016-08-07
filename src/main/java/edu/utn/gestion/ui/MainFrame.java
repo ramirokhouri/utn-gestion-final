@@ -1,11 +1,9 @@
 package edu.utn.gestion.ui;
 
-import edu.utn.gestion.model.UserRole;
 import edu.utn.gestion.ui.constants.UIConstants;
 import edu.utn.gestion.ui.dialog.book.BooksManagementDialog;
 import edu.utn.gestion.ui.dialog.customer.CustomersManagementDialog;
 import edu.utn.gestion.ui.dialog.employee.EmployeesManagementDialog;
-import edu.utn.gestion.ui.dialog.help.AboutDialog;
 import edu.utn.gestion.ui.dialog.order.OrdersManagementDialog;
 import edu.utn.gestion.ui.dialog.settlement.AttendanceDialog;
 import edu.utn.gestion.ui.dialog.settlement.SettlementDialog;
@@ -44,7 +42,7 @@ import java.util.Date;
 public class MainFrame extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(MainFrame.class);
     private static final String LOOK_AND_FEEL_DEFAULT_VALUE = "Nimbus";
-    private static final String WINDOW_TITLE = "GestionApp";
+    private static final String WINDOW_TITLE = "GestionApp - %s";
     private static final MainFrame INSTANCE = new MainFrame();
 
     private JMenu menuFile;
@@ -94,14 +92,16 @@ public class MainFrame extends JFrame {
         this.menuEmployees = new JMenu("Employees");
         this.menuAdmin = new JMenu("Admin");
 
-        this.menuItemNewSale = new JMenuItem("New Sale");
+        this.menuItemNewSale = new JMenuItem("New Sale"
+                , IconFactory.getIcon(UIConstants.ICON_APP_NEW_SALE_LOCATION));
         this.menuItemBooks = new JMenuItem("Books"
                 , IconFactory.getIcon(UIConstants.ICON_APP_BOOKS_LOCATION));
         this.menuItemCustomers = new JMenuItem("Customers"
                 , IconFactory.getIcon(UIConstants.ICON_APP_CUSTOMERS_LOCATION));
         this.menuItemEmployees = new JMenuItem("Employees"
                 , IconFactory.getIcon(UIConstants.ICON_APP_EMPLOYEES_LOCATION));
-        this.menuItemSuppliers = new JMenuItem("Suppliers");
+        this.menuItemSuppliers = new JMenuItem("Suppliers"
+                , IconFactory.getIcon(UIConstants.ICON_APP_SUPPLIERS_LOCATION));
         this.menuItemOrders = new JMenuItem("Orders"
                 , IconFactory.getIcon(UIConstants.ICON_APP_ORDERS_LOCATION));
         this.menuItemAttendance = new JMenuItem("Attendance"
@@ -110,12 +110,13 @@ public class MainFrame extends JFrame {
         this.menuHelp = new JMenu("Help");
         this.menuItemAbout = new JMenuItem("About"
                 , IconFactory.getIcon(UIConstants.ICON_APP_ABOUT_LOCATION));
-        this.menuItemAdminUsers = new JMenuItem("Users");
+        this.menuItemAdminUsers = new JMenuItem("Users"
+                , IconFactory.getIcon(UIConstants.ICON_APP_USERS_LOCATION));
 
         this.desktopPane = InternalFrameManager.getDesktopPane();
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle(WINDOW_TITLE);
+        this.setTitle(String.format(WINDOW_TITLE, Session.toStringCurrentUser()));
 
         this.menuFile.add(this.menuItemExit);
         this.menuSales.add(this.menuItemNewSale);
