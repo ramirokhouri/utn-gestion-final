@@ -60,7 +60,7 @@ public class LoginDialog extends JDialog {
         this.txtPassword.setBounds(100, 40, 160, 25);
         this.panel.add(this.txtPassword);
 
-        this.btnLogin = new JButton("Login");
+        this.btnLogin = new JButton("Log in");
         this.btnLogin.setBounds(10, 80, 80, 25);
         this.panel.add(this.btnLogin);
 
@@ -72,6 +72,7 @@ public class LoginDialog extends JDialog {
         this.btnCancel.addActionListener(event -> this.btnCancelActionPerformed());
 
         this.setSize(300, 150);
+        this.setTitle("Login");
         this.add(this.panel);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
